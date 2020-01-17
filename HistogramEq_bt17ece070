@@ -1,0 +1,28 @@
+clc;
+clear all;
+close all;
+orgimg=imread('Lenna_(test_image).png');
+gryimg=rgb2gray(orgimg);
+[x1,y1]=size(gryimg);
+array(:,1) = reshape(gryimg(:,:,1),[],1);
+sorta=sort(array);
+uniquea=unique(sorta);
+iteration=size(uniquea,1);
+count =zeros(iteration,1);
+a=1;
+z=size(sorta,1);
+for i=1:z
+    if(sorta(i)<= uniquea(a))
+       count(a)=count(a)+1;
+    
+    else
+         a=a+1;
+    end
+end
+cdf=cumsum(count);
+cdfmin=cdf(1);
+cdfmax=cdf(a);
+hist=zeros(iteration,1);
+for i=1:a
+    hist(i)=round((cdf(i)-cdfmin)/(x1*y1-cdfmin)*255);
+end  
