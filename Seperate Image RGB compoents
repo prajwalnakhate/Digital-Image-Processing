@@ -1,0 +1,3 @@
+redChannel = rgbImage(:, :, 1);
+greenChannel = rgbImage(:, :, 2);
+blueChannel = rgbImage(:, :, 3);
