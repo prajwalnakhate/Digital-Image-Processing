@@ -1,7 +1,7 @@
 clc;
 clear all;
 close all;
-orgimg=imread('Lenna_(test_image).png');
+orgimg=imread('1.jpeg');
 gryimg=rgb2gray(orgimg);
 [x1,y1]=size(gryimg);
 array(:,1) = reshape(gryimg(:,:,1),[],1);
@@ -22,7 +22,17 @@ end
 cdf=cumsum(count);
 cdfmin=cdf(1);
 cdfmax=cdf(a);
-hist=zeros(iteration,1);
+hist2=zeros(iteration,1);
+img2=[];
 for i=1:a
     hist(i)=round((cdf(i)-cdfmin)/(x1*y1-cdfmin)*255);
 end  
+finalimg=zeros(x1,y1);
+  b=1;
+for i=1:x1*y1
+  img2(i)=round((cdf(uniquea==array(i))-cdfmin)/(x1*y1-cdfmin)*255);
+end
+finalimg=cast(reshape(img2,[x1,y1]),'uint8');
+imshow(finalimg)
+figure(2)
+imshow(gryimg)
